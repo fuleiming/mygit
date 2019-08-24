@@ -121,6 +121,11 @@ int main(int argc, char **argv)
         return -1;
     }
     fd = open("/dev/mem", O_RDWR);
+    if(fd == -1)
+    {
+	perror("open failed");
+	return -1;
+    }
     
     phyAddr = strtol(&argv[1][2],NULL,16);
     map_func(fd, phyAddr, vaddr, unmapAddr);
